@@ -2,7 +2,9 @@ import { WorkerMessage } from './main';
 
 export async function handleWorkerProcess(workerMessage: WorkerMessage) {
   return new Promise<Blob>((resolve, reject) => {
-    const worker = new Worker(new URL('./worker.ts', import.meta.url));
+    const worker = new Worker(new URL('./worker.ts', import.meta.url), {
+      type: 'module',
+    });
 
     // Send the object URL to the worker
     worker.postMessage(workerMessage);
