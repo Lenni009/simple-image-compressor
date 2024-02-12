@@ -1,0 +1,39 @@
+{
+  "name": "simple-image-compressor",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Simple frontend JS library to compress images",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build:vite": "vite build",
+    "build": "tsup",
+    "format": "prettier --write .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lenni009/simple-image-compressor.git"
+  },
+  "keywords": [
+    "compressor",
+    "images",
+    "frontend"
+  ],
+  "author": "Lenni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lenni009/simple-image-compressor/issues"
+  },
+  "homepage": "https://github.com/Lenni009/simple-image-compressor#readme",
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.1"
+  }
+}
