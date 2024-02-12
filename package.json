@@ -9,7 +9,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "vite build",
     "format": "prettier --write .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -30,7 +30,8 @@
   "homepage": "https://github.com/Lenni009/simple-image-compressor#readme",
   "devDependencies": {
     "prettier": "^3.2.5",
-    "tsup": "^8.0.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vite": "^5.1.1",
+    "vite-plugin-dts": "^3.7.2"
   }
 }

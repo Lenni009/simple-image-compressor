@@ -1,4 +1,4 @@
-import { CompressionConfig } from '.';
+import { CompressionConfig } from './main';
 
 onmessage = async ({ data }) => {
   const { img, file, config } = data;
