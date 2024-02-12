@@ -9,7 +9,6 @@
     "dist"
   ],
   "scripts": {
-    "build:vite": "vite build",
     "build": "tsup",
     "format": "prettier --write .",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -33,7 +32,6 @@
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
     "tsup": "^8.0.2",
-    "typescript": "^5.3.3",
-    "vite": "^5.1.1"
+    "typescript": "^5.3.3"
   }
 }

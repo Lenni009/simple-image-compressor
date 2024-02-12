@@ -1,4 +1,4 @@
-import { WorkerMessage } from './main';
+import { WorkerMessage } from '.';
 
 export async function handleWorkerProcess(workerMessage: WorkerMessage) {
   return new Promise<Blob>((resolve, reject) => {
