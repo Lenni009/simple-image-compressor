@@ -28,6 +28,7 @@ export async function compressImage(file: File, config: CompressionConfig = {}):
   // get width & height of file for canvas dimensions in worker
   const objectUrl = URL.createObjectURL(file);
   const { width, height } = await objectURLtoImage(objectUrl);
+  URL.revokeObjectURL(objectUrl);
 
   // construct object to send to worker
   const workerMessage: WorkerMessage = { img: { width, height }, file, config };
