@@ -1,14 +1,14 @@
-import { imageTypes } from "./imageTypes";
+import { imageTypes } from './imageTypes';
 
-  type ValueOf<T> = T[keyof T];
+type ValueOf<T> = T[keyof T];
 
-  export interface CompressionConfig {
-    type?: ValueOf<typeof imageTypes>;
-    quality?: number;
-  }
+export interface CompressionConfig {
+  type?: ValueOf<typeof imageTypes>;
+  quality?: number;
+}
 
-  export interface WorkerMessage {
-    img: { width: number; height: number };
-    buffer: ArrayBuffer;
-    config: CompressionConfig;
-  }
+export interface WorkerMessage {
+  img: { width: number; height: number };
+  buffer: ArrayBuffer;
+  config: CompressionConfig;
+}
