@@ -1,4 +1,4 @@
-# File Compression
+# Simple Image Compressor
 
 This is a client-side file compression library using web workers.
 
