@@ -13,7 +13,7 @@ Main function: `compressImage()`
 
 ## Return
 
-Promise<Blob>
+Promise\<Blob\>
 
 ## Usage
 
