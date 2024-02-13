@@ -9,6 +9,9 @@ export default defineConfig({
       insertTypesEntry: true,
     }),
   ],
+  worker: {
+    format: 'es'
+  },
   build: {
     lib: {
       // Could also be a dictionary or array of multiple entry points
