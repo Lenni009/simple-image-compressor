@@ -1,4 +1,4 @@
-import { WorkerMessage } from './types';
+import type { WorkerMessage } from './types';
 import ImageWorker from './worker?worker';
 
 export async function handleWorkerProcess(workerMessage: WorkerMessage) {
@@ -8,7 +8,7 @@ export async function handleWorkerProcess(workerMessage: WorkerMessage) {
     // Send the object URL to the worker
     worker.postMessage(workerMessage);
 
-    worker.onmessage = ({ data }: MessageEvent) => {
+    worker.onmessage = ({ data }: MessageEvent<Blob>) => {
       worker.terminate();
       if (data instanceof Blob) {
         resolve(data); // Resolve the promise with the data from the worker

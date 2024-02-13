@@ -1,16 +1,15 @@
-import { CompressionConfig } from './types';
+import type { WorkerMessage } from './types';
 
-onmessage = async ({ data }) => {
-  const { img, file, config } = data;
-  const workerResult = await compressFileWorker(img, file, config);
+onmessage = async ({ data }: MessageEvent<WorkerMessage>) => {
+  const workerResult = await compressFileWorker(data);
   postMessage(workerResult);
 };
 
-async function compressFileWorker(
-  { width, height }: { width: number; height: number },
-  file: File,
-  config: CompressionConfig
-) {
+async function compressFileWorker({
+  img: { width, height },
+  file,
+  config
+}: WorkerMessage) {
   // Create an OffscreenCanvas
   const offscreenCanvas = new OffscreenCanvas(width, height);
   const ctx = offscreenCanvas.getContext('2d');
