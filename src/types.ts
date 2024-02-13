@@ -2,13 +2,19 @@ import { imageTypes } from './imageTypes';
 
 type ValueOf<T> = T[keyof T];
 
+type MimeTypes = ValueOf<typeof imageTypes>;
+
 export interface CompressionConfig {
-  type?: ValueOf<typeof imageTypes>;
+  type?: MimeTypes;
   quality?: number;
+}
+
+export interface WorkerMessageConfig extends CompressionConfig {
+  originalType: string;
 }
 
 export interface WorkerMessage {
   img: { width: number; height: number };
   buffer: ArrayBuffer;
-  config: CompressionConfig;
+  config: WorkerMessageConfig;
 }

@@ -9,13 +9,11 @@ export async function handleWorkerProcess(workerMessage: WorkerMessage) {
     worker.postMessage(workerMessage, [workerMessage.buffer]);
 
     worker.onmessage = ({ data }: MessageEvent<{ buffer: ArrayBuffer }>) => {
-      worker.terminate();
-      const file = new Blob([data.buffer]);
+      const file = new Blob([data.buffer], { type: workerMessage.config.type });
       resolve(file); // Resolve the promise with the data from the worker
     };
 
     worker.onerror = (error: Error) => {
-      worker.terminate();
       reject(error); // Reject the promise if there's an error
     };
   });

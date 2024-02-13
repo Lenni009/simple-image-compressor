@@ -5,6 +5,7 @@ onmessage = async ({ data }: MessageEvent<WorkerMessage>) => {
   const buffer = await workerResult.arrayBuffer();
   const transferObject = { buffer };
   postMessage(transferObject, { transfer: [transferObject.buffer] });
+  close();
 };
 
 async function compressFileWorker({ img: { width, height }, buffer, config }: WorkerMessage) {
@@ -12,7 +13,7 @@ async function compressFileWorker({ img: { width, height }, buffer, config }: Wo
   const offscreenCanvas = new OffscreenCanvas(width, height);
   const ctx = offscreenCanvas.getContext('2d');
 
-  const blob = new Blob([buffer]);
+  const blob = new Blob([buffer], { type: config.originalType });
 
   // Create an ImageBitmap from the object URL
   const imageBitmap = await createImageBitmap(blob);
