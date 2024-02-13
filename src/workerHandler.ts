@@ -6,15 +6,12 @@ export async function handleWorkerProcess(workerMessage: WorkerMessage) {
     const worker = new ImageWorker();
 
     // Send the object URL to the worker
-    worker.postMessage(workerMessage);
+    worker.postMessage(workerMessage, [workerMessage.buffer]);
 
-    worker.onmessage = ({ data }: MessageEvent<Blob>) => {
+    worker.onmessage = ({ data }: MessageEvent<{ buffer: ArrayBuffer }>) => {
       worker.terminate();
-      if (data instanceof Blob) {
-        resolve(data); // Resolve the promise with the data from the worker
-      } else {
-        reject(new Error('Failed to compress')); // Reject the promise if there's an error
-      }
+      const file = new Blob([data.buffer]);
+      resolve(file); // Resolve the promise with the data from the worker
     };
 
     worker.onerror = (error: Error) => {

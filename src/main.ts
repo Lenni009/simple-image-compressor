@@ -13,12 +13,16 @@ export async function compressImage(file: File, config: CompressionConfig = {}):
   const { width, height } = await objectURLtoImage(objectUrl);
   URL.revokeObjectURL(objectUrl);
 
+const buffer = await file.arrayBuffer();
+
   // construct object to send to worker
-  const workerMessage: WorkerMessage = { img: { width, height }, file, config };
+  const workerMessage: WorkerMessage = { img: { width, height }, buffer, config };
 
   // let the worker process the file
   const compressedBlob = await handleWorkerProcess(workerMessage);
 
   // if the compression made size worse, just return the original file
-  return compressedBlob.size > file.size ? file : compressedBlob;
+  return compressedBlob;
 }
+
+export { imageTypes, CompressionConfig };
