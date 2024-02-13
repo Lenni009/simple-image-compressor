@@ -20,10 +20,7 @@ async function compressFileWorker({
   // Draw the ImageBitmap onto the OffscreenCanvas
   ctx?.drawImage(imageBitmap, 0, 0);
 
-  const compressedBlob = await offscreenCanvas.convertToBlob({
-    type: config.type,
-    quality: config.quality,
-  });
+  const compressedBlob = await offscreenCanvas.convertToBlob(config);
 
   return compressedBlob;
 }
