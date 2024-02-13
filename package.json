@@ -1,6 +1,6 @@
 {
   "name": "simple-image-compressor",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "description": "Simple frontend JS library to compress images",
   "main": "./dist/index.js",
