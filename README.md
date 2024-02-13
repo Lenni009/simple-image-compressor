@@ -18,25 +18,37 @@ Promise<Blob>
 ## Usage
 
 ```ts
-import { compressImage } from './fileCompression';
+import { compressImage } from 'simple-image-compressor';
 
-async function compressFile() {
-  const file = document.getElementById('file-input')?.files?.[0];
-  if (!file) return;
-  const quality = 0.9;
+async function compressFile(file) {
   const res = await compressImage(file, {
-    quality,
+    quality: 0.9,
     type: 'image/jpeg',
   });
-  return new File([res], 'new filename.jpg', { type: 'image/jpeg' })
+  return new File([res], 'new filename.jpg', { type: 'image/jpeg' });
 }
+
+const file = document.getElementById('file-input')?.files?.[0];
+
+const compressedImage = await compressFile(file);
+
+// upload to server, etc.
 ```
 
 ### Additional Export
 
 ```ts
-import { imageTypes, compressImage } from './fileCompression';
+import { imageTypes, compressImage } from 'simple-image-compressor';
+```
 
+`imageTypes` is an object containing the three expected values for `config.type`:
+
+```ts
+const imageTypes = {
+  PNG: 'image/png',
+  JPEG: 'image/jpeg',
+  GIF: 'image/gif',
+}
 ```
 
 ## How it works
