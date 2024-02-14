@@ -4,7 +4,15 @@ This is a client-side file compression library using web workers.
 
 Greatly inspired by https://github.com/WangYuLue/image-conversion
 
-Main function: `compressImage()`
+## Installation
+
+```sh
+npm i simple-image-compressor
+```
+
+## Main function
+
+`compressImage()`
 
 ## Parameters
 
