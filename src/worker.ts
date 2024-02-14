@@ -13,10 +13,8 @@ async function compressFileWorker({ img: { width, height }, buffer, config }: Wo
   const offscreenCanvas = new OffscreenCanvas(width, height);
   const ctx = offscreenCanvas.getContext('2d');
 
-  const blob = new Blob([buffer], { type: config.originalType });
-
   // Create an ImageBitmap from the object URL
-  const imageBitmap = await createBitmapRecursive(blob);
+  const imageBitmap = await createBitmapRecursive(new Blob([buffer], { type: config.originalType }));
 
   // Draw the ImageBitmap onto the OffscreenCanvas
   ctx?.drawImage(imageBitmap, 0, 0);
