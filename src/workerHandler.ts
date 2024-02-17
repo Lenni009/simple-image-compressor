@@ -14,6 +14,7 @@ export async function handleWorkerProcess(workerMessage: WorkerMessage) {
     };
 
     worker.onerror = (error: Error) => {
+      console.error(error);
       reject(error); // Reject the promise if there's an error
     };
   });

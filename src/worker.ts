@@ -1,11 +1,17 @@
 import type { WorkerMessage } from './types';
 
 onmessage = async ({ data }: MessageEvent<WorkerMessage>) => {
-  const workerResult = await compressFileWorker(data);
-  const buffer = await workerResult.arrayBuffer();
-  const transferObject = { buffer };
-  postMessage(transferObject, { transfer: [transferObject.buffer] });
-  close();
+  try {
+    const workerResult = await compressFileWorker(data);
+    const buffer = await workerResult.arrayBuffer();
+    const transferObject = { buffer };
+    postMessage(transferObject, { transfer: [transferObject.buffer] });
+  } catch (error) {
+    const errorMsg = `Could not compress! ${error instanceof Error ? error.message : ''}`;
+    throw new Error(errorMsg);
+  } finally {
+    close();
+  }
 };
 
 async function compressFileWorker({ img: { width, height }, buffer, config }: WorkerMessage) {
@@ -15,8 +21,8 @@ async function compressFileWorker({ img: { width, height }, buffer, config }: Wo
 
   const blob = new Blob([buffer], { type: config.originalType });
 
-  // Create an ImageBitmap from the object URL
-  const imageBitmap = await createBitmapRecursive(blob);
+  // Create an ImageBitmap from the blob
+  const imageBitmap = await createImageBitmap(blob);
 
   // Draw the ImageBitmap onto the OffscreenCanvas
   ctx?.drawImage(imageBitmap, 0, 0);
@@ -24,13 +30,4 @@ async function compressFileWorker({ img: { width, height }, buffer, config }: Wo
   const compressedBlob = await offscreenCanvas.convertToBlob(config);
 
   return compressedBlob;
-}
-
-async function createBitmapRecursive(blob: Blob) {
-  try {
-    const bitmap = await createImageBitmap(blob);
-    return bitmap;
-  } catch {
-    return createBitmapRecursive(blob);
-  }
 }
