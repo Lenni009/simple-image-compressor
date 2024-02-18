@@ -31,4 +31,4 @@ export async function compressImage(file: File, config: CompressionConfig = {}):
 }
 
 // export for final bundle
-export { imageTypes, CompressionConfig };
+export { imageTypes, type CompressionConfig };

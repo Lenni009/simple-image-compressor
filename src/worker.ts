@@ -1,14 +1,21 @@
-import type { WorkerMessage } from './types';
+import type { WorkerErrorResponse, WorkerMessage, WorkerSuccessResponse } from './types';
 
 onmessage = async ({ data }: MessageEvent<WorkerMessage>) => {
   try {
     const workerResult = await compressFileWorker(data);
     const buffer = await workerResult.arrayBuffer();
-    const transferObject = { buffer };
-    postMessage(transferObject, { transfer: [transferObject.buffer] });
+    const transferObject: WorkerSuccessResponse = {
+      status: 'success',
+      data: buffer,
+    };
+    postMessage(transferObject, { transfer: [transferObject.data] });
   } catch (error) {
-    const errorMsg = `Could not compress! ${error instanceof Error ? error.message : ''}`;
-    throw new Error(errorMsg);
+    const errorMessage = `Could not compress! ${error instanceof Error ? error.message : ''}`;
+    const transferObject: WorkerErrorResponse = {
+      status: 'error',
+      data: errorMessage,
+    };
+    postMessage(transferObject);
   } finally {
     close();
   }
