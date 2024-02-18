@@ -1,5 +1,5 @@
 import type { WorkerMessage, WorkerResponse } from './types';
-// @ts-ignore
+// @ts-ignore these are Vite import attributes
 import ImageWorker from './worker?worker&inline';
 
 export async function handleWorkerProcess(workerMessage: WorkerMessage) {
