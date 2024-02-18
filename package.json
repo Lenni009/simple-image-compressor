@@ -29,7 +29,6 @@
   },
   "homepage": "https://github.com/Lenni009/simple-image-compressor#readme",
   "devDependencies": {
-    "npm-run-all": "^4.1.5",
     "prettier": "^3.2.5",
     "typescript": "^5.3.3",
     "vite": "^5.1.1",
