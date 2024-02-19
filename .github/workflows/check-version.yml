@@ -29,7 +29,7 @@ jobs:
 
       - name: Get New Version
         run: |
-          new_version = $(npm pkg get version | xargs)
+          new_version=$(npm pkg get version | xargs)
           echo "NEW=${new_version}" >> $GITHUB_ENV
 
       - name: Checkout Repo
@@ -37,7 +37,7 @@ jobs:
 
       - name: Get Main Version
         run: |
-          main_version = $(npm pkg get version | xargs)
+          main_version=(npm pkg get version | xargs)
           echo "MAIN=${main_version}" >> $GITHUB_ENV
 
       - name: Compare Versions
