@@ -29,16 +29,16 @@ jobs:
 
       - name: Get New Version
         run: |
-          version = npm pkg get version | xargs
-          echo "NEW=${version}" >> $GITHUB_ENV
+          new_version = $(npm pkg get version | xargs)
+          echo "NEW=${new_version}" >> $GITHUB_ENV
 
       - name: Checkout Repo
         uses: actions/checkout@v4
 
       - name: Get Main Version
         run: |
-          version = npm pkg get version | xargs
-          echo "MAIN=${version}" >> $GITHUB_ENV
+          main_version = $(npm pkg get version | xargs)
+          echo "MAIN=${main_version}" >> $GITHUB_ENV
 
       - name: Compare Versions
         run: |
