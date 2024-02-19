@@ -1,11 +1,24 @@
-import type { WorkerMessage } from './types';
+import type { WorkerErrorResponse, WorkerMessage, WorkerSuccessResponse } from './types';
 
 onmessage = async ({ data }: MessageEvent<WorkerMessage>) => {
-  const workerResult = await compressFileWorker(data);
-  const buffer = await workerResult.arrayBuffer();
-  const transferObject = { buffer };
-  postMessage(transferObject, { transfer: [transferObject.buffer] });
-  close();
+  try {
+    const workerResult = await compressFileWorker(data);
+    const buffer = await workerResult.arrayBuffer();
+    const transferObject: WorkerSuccessResponse = {
+      status: 'success',
+      data: buffer,
+    };
+    postMessage(transferObject, { transfer: [transferObject.data] });
+  } catch (error) {
+    const errorMessage = `Could not compress! ${error instanceof Error ? error.message : ''}`;
+    const transferObject: WorkerErrorResponse = {
+      status: 'error',
+      data: errorMessage,
+    };
+    postMessage(transferObject);
+  } finally {
+    close();
+  }
 };
 
 async function compressFileWorker({ img: { width, height }, buffer, config }: WorkerMessage) {
@@ -15,7 +28,7 @@ async function compressFileWorker({ img: { width, height }, buffer, config }: Wo
 
   const blob = new Blob([buffer], { type: config.originalType });
 
-  // Create an ImageBitmap from the object URL
+  // Create an ImageBitmap from the blob
   const imageBitmap = await createImageBitmap(blob);
 
   // Draw the ImageBitmap onto the OffscreenCanvas

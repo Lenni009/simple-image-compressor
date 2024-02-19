@@ -1,6 +1,6 @@
 {
   "name": "simple-image-compressor",
-  "version": "1.1.0",
+  "version": "1.4.0",
   "type": "module",
   "description": "Simple frontend JS library to compress images",
   "main": "./dist/index.js",
@@ -9,7 +9,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "vite build",
+    "build": "tsc && vite build",
     "format": "prettier --write src/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
