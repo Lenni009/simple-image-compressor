@@ -1,0 +1,45 @@
+name: Check Version
+run-name: Check Version
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+concurrency:
+  group: 'checkversion'
+  cancel-in-progress: true
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Get New Version
+        run: |
+          version = npm pkg get version | xargs
+          echo "NEW=${version}" >> $GITHUB_ENV
+
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Get Main Version
+        run: |
+          version = npm pkg get version | xargs
+          echo "MAIN=${version}" >> $GITHUB_ENV
+
+      - name: Post PR Comment
+        if: ${{ env.NEW == env.MAIN }}
+        uses: mshick/add-pr-comment@v2
+        with:
+          message-path: Please bump the version in package.json!
+          preformatted: true
+          refresh-message-position: true
+          allow-repeats: true
