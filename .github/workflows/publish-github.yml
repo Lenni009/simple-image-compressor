@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  get-version:
+  github:
     runs-on: ubuntu-latest
 
     permissions:
@@ -23,7 +23,7 @@ jobs:
 
       - name: Get version
         run: |
-          version = npm pkg get version | xargs
+          version=$(npm pkg get version | xargs)
           echo "TAG=${version}" >> $GITHUB_ENV
 
       - name: Push tag
