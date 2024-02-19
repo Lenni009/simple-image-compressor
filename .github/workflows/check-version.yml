@@ -6,7 +6,7 @@ on:
     types: [opened, synchronize]
 
 concurrency:
-  group: 'checkversion'
+  group: "checkversion"
   cancel-in-progress: true
 
 jobs:
@@ -35,11 +35,18 @@ jobs:
           version = npm pkg get version | xargs
           echo "MAIN=${version}" >> $GITHUB_ENV
 
+      - name: Compare Versions
+        run: |
+          if [ "${{env.NEW}}" = "${{env.MAIN}}" ]; then
+            exit 1
+          fi
+
       - name: Post PR Comment
-        if: ${{ env.NEW == env.MAIN }}
+        if: failure()
         uses: mshick/add-pr-comment@v2
         with:
-          message-path: Please bump the version in package.json!
+          message: Please bump the version in package.json!
           preformatted: true
           refresh-message-position: true
           allow-repeats: true
+
