@@ -37,7 +37,7 @@ jobs:
 
       - name: Compare Versions
         run: |
-          if [ "${{env.NEW}}" = "${{env.MAIN}}" ]; then
+          if [ "${{ github.env.NEW }}" = "${{ github.env.MAIN }}" ]; then
             exit 1
           fi
 
