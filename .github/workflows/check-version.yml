@@ -4,6 +4,7 @@ run-name: Check Version
 on:
   pull_request:
     types: [opened, synchronize]
+    branches: main
 
 concurrency:
   group: 'checkversion'
@@ -24,8 +25,6 @@ jobs:
 
       - name: Checkout Repo
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref }}
 
       - name: Get New Version
         run: |
