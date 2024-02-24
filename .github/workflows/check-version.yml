@@ -5,17 +5,33 @@ on:
   pull_request:
     types: [opened, synchronize]
     branches: main
-    paths:
-      - 'src/**/*'
-      - '!src/**/*.spec.*'
-      - '!src/**/*.test.*'
 
 concurrency:
   group: 'checkversion'
   cancel-in-progress: true
 
 jobs:
+  paths-filter:
+    runs-on: ubuntu-latest
+    outputs:
+      code-changed: ${{ steps.filter.outputs.src }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Filter Changed Files
+        uses: AurorNZ/paths-filter@v4
+        id: filter
+        with:
+          filters: |
+            src:
+              - 'src/**/*'
+              - '!src/**/*.spec.*'
+              - '!src/**/*.test.*'
+
   check-version:
+    needs: paths-filter
+    if: needs.paths-filter.outputs.code-changed == 'true'
     runs-on: ubuntu-latest
 
     permissions:
