@@ -1,5 +1,4 @@
 export const imageTypes = {
-  PNG: 'image/png',
+  WEBP: 'image/webp',
   JPEG: 'image/jpeg',
-  GIF: 'image/gif',
 } as const;

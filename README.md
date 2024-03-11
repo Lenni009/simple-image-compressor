@@ -53,9 +53,8 @@ import { imageTypes, compressImage } from 'simple-image-compressor';
 
 ```ts
 const imageTypes = {
-  PNG: 'image/png',
+  WEBP: 'image/webp',
   JPEG: 'image/jpeg',
-  GIF: 'image/gif',
 }
 ```
 
