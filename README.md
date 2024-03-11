@@ -6,8 +6,16 @@ Greatly inspired by https://github.com/WangYuLue/image-conversion
 
 ## Installation
 
+### NPM
+
 ```sh
 npm i simple-image-compressor
+```
+
+### CDN
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/simple-image-compressor@1.6.0/dist/simple-image-compressor.js"></script>
 ```
 
 ## Main function
@@ -25,14 +33,17 @@ npm i simple-image-compressor
 
 ## Usage
 
+### NPM
+
 ```ts
 import { compressImage } from 'simple-image-compressor';
 
 async function compressFile(file) {
-  const res = await compressImage(file, {
+  const options = {
     quality: 0.9,
     type: 'image/jpeg',
-  });
+  };
+  const res = await compressImage(file, options);
   return new File([res], 'new filename.jpg', { type: 'image/jpeg' });
 }
 
@@ -41,6 +52,33 @@ const file = document.getElementById('file-input')?.files?.[0];
 const compressedImage = await compressFile(file);
 
 // upload to server, etc.
+```
+
+### CDN
+
+```html
+<html lang="en">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/simple-image-compressor@1.6.0/dist/simple-image-compressor.js"></script>
+    <script defer>
+      const fileInput = document.getElementById('file-input');
+      const file = fileInput.files[0];
+      const options = {
+        quality: 0.9,
+        type: 'image/jpeg',
+      }
+      const compressedImage = await imageCompressor.compressImage(file, options);
+      // do something with that image...
+    </script>
+  </head>
+
+  <body>
+    <input
+      id="file-input"
+      type="file"
+    />
+  </body>
+</html>
 ```
 
 ### Additional Export
@@ -55,7 +93,7 @@ import { imageTypes, compressImage } from 'simple-image-compressor';
 const imageTypes = {
   WEBP: 'image/webp',
   JPEG: 'image/jpeg',
-}
+};
 ```
 
 ## How it works
