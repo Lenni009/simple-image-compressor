@@ -7,19 +7,19 @@ export default defineConfig({
   base: './',
   plugins: [
     dts({
+      exclude: ['**/**.spec.*', '**/**.test.*', '*.config.*'],
       insertTypesEntry: true,
     }),
   ],
   worker: {
-    format: 'es'
+    format: 'es',
   },
   build: {
     lib: {
       // Could also be a dictionary or array of multiple entry points
       entry: fileURLToPath(new URL('src/main.ts', import.meta.url)),
-      fileName: 'index',
-      name: 'simple-image-compressor',
-      formats: ['es'],
+      name: 'imageCompressor',
+      formats: ['es', 'umd'],
     },
   },
 });
