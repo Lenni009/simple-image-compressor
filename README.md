@@ -17,7 +17,7 @@ npm i simple-image-compressor
 ## Parameters
 
 1. file: File
-2. config: `{ type: 'image/png' | 'image/jpeg' | 'image/gif' = 'image/jpeg', quality: number = 0.92 }`
+2. config: `{ type: 'image/jpeg' | 'image/webp' = 'image/jpeg', quality: number = 0.92 }`
 
 ## Return
 
