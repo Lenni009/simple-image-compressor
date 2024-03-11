@@ -49,7 +49,7 @@ const compressedImage = await compressFile(file);
 import { imageTypes, compressImage } from 'simple-image-compressor';
 ```
 
-`imageTypes` is an object containing the three expected values for `config.type`:
+`imageTypes` is an object containing the two expected values for `config.type`:
 
 ```ts
 const imageTypes = {
@@ -63,3 +63,8 @@ const imageTypes = {
 File -> ObjectURL & HTMLImageElement (width + height) -> imageBitMap -> Canvas -> Blob
 
 "ImageBitMap -> Canvas -> Blob" happens in a web worker, allowing for parallel processing.
+
+## Similar Packages
+
+- [browser-image-compression](https://www.npmjs.com/package/browser-image-compression)
+- [image-conversion](https://www.npmjs.com/package/image-conversion)
