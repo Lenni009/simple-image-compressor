@@ -14,7 +14,6 @@ export interface WorkerMessageConfig extends CompressionConfig {
 }
 
 export interface WorkerMessage {
-  img: { width: number; height: number };
   file: File;
   config: WorkerMessageConfig;
 }
