@@ -60,15 +60,19 @@ const compressedImage = await compressFile(file);
 <html lang="en">
   <head>
     <script src="https://cdn.jsdelivr.net/npm/simple-image-compressor@1.6.0/dist/simple-image-compressor.js"></script>
-    <script defer>
-      const fileInput = document.getElementById('file-input');
-      const file = fileInput.files[0];
-      const options = {
-        quality: 0.9,
-        type: 'image/jpeg',
-      }
-      const compressedImage = await imageCompressor.compressImage(file, options);
-      // do something with that image...
+    <script>
+      window.onload = () => {
+        const fileInput = document.getElementById('file-input');
+        fileInput.addEventListener('change', async () => {
+          const file = fileInput.files[0];
+          const options = {
+            quality: 0.9,
+            type: imageCompressor.imageTypes.WEBP,
+          };
+          const compressedImage = await imageCompressor.compressImage(file, options);
+          // do something with the compressed image
+        });
+      };
     </script>
   </head>
 
