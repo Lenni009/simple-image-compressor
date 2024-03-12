@@ -36,5 +36,7 @@ async function compressFileWorker({ file, config }: WorkerMessage) {
 
   const compressedBlob = await offscreenCanvas.convertToBlob(config);
 
+  imageBitmap.close();
+
   return compressedBlob;
 }
