@@ -33,7 +33,7 @@ jobs:
           npm ci
           npm run build
           cd dist
-          mv simple-image-compressor.umd.cjs simple-image-compressor.js
+          mv simple-image-compressor.umd.cjs simple-image-compressor-min.js
 
       - name: Publish to NPM
         run: npm publish
