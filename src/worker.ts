@@ -23,13 +23,13 @@ onmessage = async ({ data }: MessageEvent<WorkerMessage>) => {
 async function compressFileWorker({ img: { width, height }, file, config }: WorkerMessage) {
   // Create an OffscreenCanvas
   const offscreenCanvas = new OffscreenCanvas(width, height);
-  const ctx = offscreenCanvas.getContext('2d');
+  const ctx = offscreenCanvas.getContext('bitmaprenderer');
 
   // Create an ImageBitmap from the file
   const imageBitmap = await createImageBitmap(file);
 
-  // Draw the ImageBitmap onto the OffscreenCanvas
-  ctx?.drawImage(imageBitmap, 0, 0);
+  // Transfer the ImageBitmap to the OffscreenCanvas
+  ctx?.transferFromImageBitmap(imageBitmap);
 
   const compressedBlob = await offscreenCanvas.convertToBlob(config);
 
