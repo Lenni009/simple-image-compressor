@@ -3,12 +3,11 @@ import type { WorkerErrorResponse, WorkerMessage, WorkerSuccessResponse } from '
 onmessage = async ({ data }: MessageEvent<WorkerMessage>) => {
   try {
     const workerResult = await compressFileWorker(data);
-    const buffer = await workerResult.arrayBuffer();
     const transferObject: WorkerSuccessResponse = {
       status: 'success',
-      data: buffer,
+      data: workerResult,
     };
-    postMessage(transferObject, { transfer: [transferObject.data] });
+    postMessage(transferObject);
   } catch (error) {
     const errorMessage = `Could not compress! ${error instanceof Error ? error.message : ''}`;
     const transferObject: WorkerErrorResponse = {
@@ -21,15 +20,13 @@ onmessage = async ({ data }: MessageEvent<WorkerMessage>) => {
   }
 };
 
-async function compressFileWorker({ img: { width, height }, buffer, config }: WorkerMessage) {
+async function compressFileWorker({ img: { width, height }, file, config }: WorkerMessage) {
   // Create an OffscreenCanvas
   const offscreenCanvas = new OffscreenCanvas(width, height);
   const ctx = offscreenCanvas.getContext('2d');
 
-  const blob = new Blob([buffer], { type: config.originalType });
-
-  // Create an ImageBitmap from the blob
-  const imageBitmap = await createImageBitmap(blob);
+  // Create an ImageBitmap from the file
+  const imageBitmap = await createImageBitmap(file);
 
   // Draw the ImageBitmap onto the OffscreenCanvas
   ctx?.drawImage(imageBitmap, 0, 0);
