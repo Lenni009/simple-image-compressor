@@ -18,10 +18,8 @@ export async function compressImage(file: File, config: CompressionConfig = {}):
     ...config,
   };
 
-  const buffer = await file.arrayBuffer();
-
   // construct object to send to worker
-  const workerMessage: WorkerMessage = { buffer, img: { width, height }, config: workerConfig };
+  const workerMessage: WorkerMessage = { file, img: { width, height }, config: workerConfig };
 
   // let the worker process the file
   const compressedBlob = await handleWorkerProcess(workerMessage);

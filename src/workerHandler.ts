@@ -7,16 +7,14 @@ export async function handleWorkerProcess(workerMessage: WorkerMessage) {
     const worker = new ImageWorker();
 
     // Send the object URL to the worker
-    worker.postMessage(workerMessage, [workerMessage.buffer]);
+    worker.postMessage(workerMessage);
 
     worker.onmessage = ({ data }: MessageEvent<WorkerResponse>) => {
       if (data.status === 'error') {
         console.error(data.data);
         reject(data.data); // Reject the promise if there's an error
       } else {
-        const file = new Blob([data.data], {
-          type: workerMessage.config.type,
-        });
+        const file = data.data;
         resolve(file); // Resolve the promise with the data from the worker
       }
     };
