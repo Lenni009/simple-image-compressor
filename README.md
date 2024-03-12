@@ -35,7 +35,7 @@ npm i simple-image-compressor
 
 ### NPM
 
-```ts
+```js
 import { compressImage } from 'simple-image-compressor';
 
 async function compressFile(file) {
@@ -83,13 +83,13 @@ const compressedImage = await compressFile(file);
 
 ### Additional Export
 
-```ts
+```js
 import { imageTypes, compressImage } from 'simple-image-compressor';
 ```
 
 `imageTypes` is an object containing the two expected values for `config.type`:
 
-```ts
+```js
 const imageTypes = {
   WEBP: 'image/webp',
   JPEG: 'image/jpeg',
