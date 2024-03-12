@@ -3,7 +3,7 @@
   "version": "1.7.0",
   "type": "module",
   "description": "Simple frontend JS library to compress images",
-  "main": "./dist/index.js",
+  "main": "./dist/simple-image-compressor.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
