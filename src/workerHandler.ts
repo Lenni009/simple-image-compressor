@@ -14,8 +14,8 @@ export async function handleWorkerProcess(workerMessage: WorkerMessage) {
         console.error(data.data);
         reject(data.data); // Reject the promise if there's an error
       } else {
-        const file = data.data;
-        resolve(file); // Resolve the promise with the data from the worker
+        const blob = data.data;
+        resolve(blob); // Resolve the promise with the data from the worker
       }
     };
   });

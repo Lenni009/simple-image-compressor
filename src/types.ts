@@ -20,14 +20,14 @@ export interface WorkerMessage {
 }
 
 type Status = 'success' | 'error';
-type WorkerData = File | string;
+type WorkerData = Blob | string;
 
 interface GenericWorkerResponse<T extends Status, U extends WorkerData> {
   status: T;
   data: U;
 }
 
-export type WorkerSuccessResponse = GenericWorkerResponse<'success', File>;
+export type WorkerSuccessResponse = GenericWorkerResponse<'success', Blob>;
 export type WorkerErrorResponse = GenericWorkerResponse<'error', string>;
 
 export type WorkerResponse = WorkerSuccessResponse | WorkerErrorResponse;
