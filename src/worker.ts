@@ -33,6 +33,7 @@ async function compressFileWorker({ file, config }: WorkerMessage) {
 
   // Transfer the ImageBitmap to the OffscreenCanvas
   ctx?.transferFromImageBitmap(imageBitmap);
+  imageBitmap.close();
 
   const compressedBlob = await offscreenCanvas.convertToBlob(config);
 

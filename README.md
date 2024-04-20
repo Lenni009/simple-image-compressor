@@ -102,7 +102,7 @@ const imageTypes = {
 
 ## How it works
 
-File -> ObjectURL & HTMLImageElement (width + height) -> imageBitMap -> Canvas -> Blob
+File -> imageBitMap -> Canvas -> Blob
 
 "ImageBitMap -> Canvas -> Blob" happens in a web worker, allowing for parallel processing.
 
