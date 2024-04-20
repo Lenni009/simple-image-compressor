@@ -15,7 +15,7 @@ npm i simple-image-compressor
 ### CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/simple-image-compressor@1.8.0/dist/simple-image-compressor-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-image-compressor@1.8.1/dist/simple-image-compressor-min.js"></script>
 ```
 
 ## Main function
@@ -59,7 +59,7 @@ const compressedImage = await compressFile(file);
 ```html
 <html lang="en">
   <head>
-    <script src="https://cdn.jsdelivr.net/npm/simple-image-compressor@1.8.0/dist/simple-image-compressor-min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-image-compressor@1.8.1/dist/simple-image-compressor-min.js"></script>
     <script>
       window.onload = () => {
         const fileInput = document.getElementById('file-input');
