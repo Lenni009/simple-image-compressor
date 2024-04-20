@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width, initial-scale=1.0"
+      name="viewport"
+    />
+    <title>Simple Image Compressor</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .heading {
+        text-align: center;
+      }
+
+      .inputs {
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+      }
+
+      .format-select {
+        width: auto;
+        margin-block-start: 0.5rem;
+      }
+
+      .download-link:not([download]) {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+    </style>
+    <script src="./compressor.js"></script>
+    <script>
+      let objectUrl = '';
+      window.onload = () => {
+        const fileInput = document.getElementById('file-input');
+        const qualityInput = document.getElementById('quality-input');
+        const formatSelect = document.getElementById('format-select');
+        const compressButton = document.getElementById('compress-button');
+        const qualityDisplay = document.getElementById('quality-output');
+        const downloadLink = document.getElementById('download-link');
+        qualityDisplay.innerText = qualityInput.value;
+        qualityInput.addEventListener('input', (event) => (qualityDisplay.innerText = event.target.value));
+        compressButton.addEventListener('click', async (e) => {
+          e.target.ariaBusy = true;
+          downloadLink.removeAttribute('download');
+          const file = fileInput.files[0];
+          const quality = parseInt(qualityInput.value) / 100;
+          const type = formatSelect.value;
+          const options = {
+            quality,
+            type,
+          };
+          const compressedImage = await imageCompressor.compressImage(file, options);
+          const orgFileName = file.name;
+          const fileNameOnly = orgFileName.split('.').slice(0, -1).join('.');
+          const fileExtension = type.split('/')[1];
+          const newFileName = `${fileNameOnly}-min.${fileExtension}`;
+          const newFile = new File([compressedImage], newFileName, { type });
+          URL.revokeObjectURL(objectUrl);
+          objectUrl = URL.createObjectURL(newFile);
+          downloadLink.href = objectUrl;
+          downloadLink.download = newFileName;
+          e.target.ariaBusy = false;
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <main class="container">
+      <h1 class="heading">Simple Image Compressor</h1>
+      <section>
+        <div class="inputs">
+          <label>
+            <span>Upload your file</span>
+            <input
+              accept="image/*"
+              id="file-input"
+              type="file"
+            />
+          </label>
+          <div>
+            <span>Quality</span>
+            <input
+              aria-label="Quality"
+              type="range"
+              id="quality-input"
+            />
+            <div id="quality-output"></div>
+          </div>
+          <div>
+            <div>Output Format</div>
+            <select
+              aria-label="Output Format"
+              class="format-select"
+              id="format-select"
+            >
+              <option value="image/jpeg">JPG</option>
+              <option value="image/webp">WEBP</option>
+            </select>
+          </div>
+        </div>
+        <button
+          id="compress-button"
+          type="button"
+        >
+          Compress
+        </button>
+      </section>
+      <section class="output">
+        <a
+          class="download-link"
+          id="download-link"
+          >Download Compressed File</a
+        >
+      </section>
+    </main>
+  </body>
+</html>

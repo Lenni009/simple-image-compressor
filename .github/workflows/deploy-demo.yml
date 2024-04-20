@@ -1,0 +1,34 @@
+name: Build Demo
+
+run-name: Build Demo App
+
+on:
+  push:
+    branches: ['main']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: 'build'
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Build App
+        run: |
+          npm ci
+          npm run build
+          cp dist/simple-image-compressor.umd.cjs demo/compressor.js
+          touch demo/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: demo # The folder the action should deploy.
