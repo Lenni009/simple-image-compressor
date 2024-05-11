@@ -12,7 +12,7 @@ export async function handleWorkerProcess(workerMessage: WorkerMessage) {
     worker.onmessage = ({ data }: MessageEvent<WorkerResponse>) => {
       if (data.status === 'error') {
         console.error(data.data);
-        reject(data.data); // Reject the promise if there's an error
+        reject(new Error(data.data)); // Reject the promise if there's an error
       } else {
         const blob = data.data;
         resolve(blob); // Resolve the promise with the data from the worker
