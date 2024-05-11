@@ -15,7 +15,7 @@ npm i simple-image-compressor
 ### CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/simple-image-compressor@1.8.1/dist/simple-image-compressor-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-image-compressor@1.8.2/dist/simple-image-compressor-min.js"></script>
 ```
 
 ## Main function
