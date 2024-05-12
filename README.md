@@ -104,7 +104,7 @@ const imageTypes = {
 
 File -> imageBitMap -> Canvas -> Blob
 
-"ImageBitMap -> Canvas -> Blob" happens in a web worker, allowing for parallel processing.
+This process happens in a web worker, allowing for parallel processing.
 
 ## Similar Packages
 
