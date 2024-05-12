@@ -5,10 +5,14 @@ import { compressImage, imageTypes } from '@/main';
 // the browser cannot handle node's fs package to get local image data
 // @vitest/worker takes over 60s (I never checked whether it actually succeeds eventually) for a single test
 const imageData = await fetch('https://picsum.photos/1920/1080');
-const fileBuffer = await imageData.blob();
-const file = new File([fileBuffer], 'file.jpeg', { type: 'image/jpeg' });
+const fileBlob = await imageData.blob();
+const file = new File([fileBlob], 'file.jpeg', { type: 'image/jpeg' });
 
 describe('imageCompressor', () => {
+  it('should resolve the promise with a blob', async () => {
+    await expect(compressImage(file)).resolves.toBeInstanceOf(Blob);
+  });
+
   // they can also become larger, we do not care about this. We just apply the given compression level.
   it('should always change the image filesize in jpg', async () => {
     const compressedFile = await compressImage(file, { type: imageTypes.JPEG, quality: 100 });
@@ -43,9 +47,9 @@ describe('imageCompressor', () => {
   });
 
   // Doesn't work for some reason
-  // it('should recognise bad files', async () => {
-  //   const buffer = new ArrayBuffer(1000000); // 1MB file
-  //   const badFile = new File([buffer], 'badFile.jpg', { type: 'image/jpeg' });
-  //   expect(await compressImage(badFile)).toThrowError();
-  // });
+  it('should recognise bad files', async () => {
+    const buffer = new ArrayBuffer(1000000); // 1MB file
+    const badFile = new File([buffer], 'badFile.jpg', { type: 'image/jpeg' });
+    await expect(compressImage(badFile)).rejects.toThrowError();
+  });
 });
