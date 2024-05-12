@@ -16,6 +16,14 @@
         text-align: center;
       }
 
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 0.5rem;
+        justify-content: center;
+        margin: 0;
+      }
+
       .inputs {
         display: flex;
         gap: 1rem;
@@ -69,9 +77,24 @@
       };
     </script>
   </head>
-  <body>
-    <main class="container">
+  <body class="container">
+    <header>
       <h1 class="heading">Simple Image Compressor</h1>
+      <p class="links">
+        <a
+          href="https://www.npmjs.com/package/simple-image-compressor"
+          rel="noopener noreferrer"
+          target="_blank"
+          >NPM</a
+        ><a
+          href="https://github.com/Lenni009/simple-image-compressor"
+          rel="noopener noreferrer"
+          target="_blank"
+          >GitHub</a
+        >
+      </p>
+    </header>
+    <main>
       <section>
         <div class="inputs">
           <label>

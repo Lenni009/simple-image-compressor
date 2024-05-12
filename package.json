@@ -28,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/Lenni009/simple-image-compressor/issues"
   },
-  "homepage": "https://github.com/Lenni009/simple-image-compressor#readme",
+  "homepage": "https://lenni009.github.io/simple-image-compressor/",
   "devDependencies": {
     "@vitest/browser": "^1.6.0",
     "prettier": "^3.2.5",
