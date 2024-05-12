@@ -46,7 +46,6 @@ describe('imageCompressor', () => {
     expect(lqFile.size).toBeLessThan(hqFile.size);
   });
 
-  // Doesn't work for some reason
   it('should recognise bad files', async () => {
     const buffer = new ArrayBuffer(1000000); // 1MB file
     const badFile = new File([buffer], 'badFile.jpg', { type: 'image/jpeg' });
