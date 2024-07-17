@@ -30,6 +30,7 @@ export default defineConfig({
   test: {
     exclude: [...configDefaults.exclude, './build/**', './dist/**'],
     browser: {
+      provider: 'webdriverio',
       enabled: true,
       headless: true,
       name: 'chrome',
