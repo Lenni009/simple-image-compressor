@@ -36,6 +36,6 @@
     "vite": "^5.1.1",
     "vite-plugin-dts": "^4.0.2",
     "vitest": "^2.0.3",
-    "webdriverio": "^8.36.1"
+    "webdriverio": "^9.0.4"
   }
 }
