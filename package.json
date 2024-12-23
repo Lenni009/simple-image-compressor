@@ -33,7 +33,7 @@
     "@vitest/browser": "^2.0.3",
     "prettier": "^3.2.5",
     "typescript": "^5.3.3",
-    "vite": "^5.4.6",
+    "vite": "^6.0.5",
     "vite-plugin-dts": "^4.0.2",
     "vitest": "^2.0.3",
     "webdriverio": "^9.0.4"
