@@ -30,7 +30,7 @@
   },
   "homepage": "https://lenni009.github.io/simple-image-compressor/",
   "devDependencies": {
-    "@vitest/browser": "^2.0.3",
+    "@vitest/browser": "^3.0.4",
     "prettier": "^3.2.5",
     "typescript": "^5.3.3",
     "vite": "^5.4.6",
