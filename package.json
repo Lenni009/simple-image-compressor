@@ -30,12 +30,12 @@
   },
   "homepage": "https://lenni009.github.io/simple-image-compressor/",
   "devDependencies": {
-    "@vitest/browser": "^2.0.3",
+    "@vitest/browser": "^3.0.4",
     "prettier": "^3.2.5",
     "typescript": "^5.3.3",
-    "vite": "^5.4.6",
+    "vite": "^6.0.11",
     "vite-plugin-dts": "^4.0.2",
-    "vitest": "^2.0.3",
+    "vitest": "^3.0.4",
     "webdriverio": "^9.0.4"
   }
 }
