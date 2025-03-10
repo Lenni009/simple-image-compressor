@@ -5,15 +5,8 @@ import dts from 'vite-plugin-dts';
 
 export default defineConfig({
   base: './',
-  plugins: [
-    dts({
-      exclude: ['**/**.spec.*', '**/**.test.*', '*.config.*'],
-      insertTypesEntry: true,
-    }),
-  ],
-  worker: {
-    format: 'es',
-  },
+  plugins: [dts({ exclude: ['**/**.spec.*', '**/**.test.*', '*.config.*'], insertTypesEntry: true })],
+  worker: { format: 'es' },
   build: {
     lib: {
       // Could also be a dictionary or array of multiple entry points
@@ -22,25 +15,10 @@ export default defineConfig({
       formats: ['es', 'umd'],
     },
   },
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
-  },
+  resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   test: {
     exclude: [...configDefaults.exclude, './build/**', './dist/**'],
-    browser: {
-      provider: 'webdriverio',
-      enabled: true,
-      headless: true,
-      name: 'chrome',
-    },
-    coverage: {
-      reporter: ['default', 'text', 'html'],
-      extension: ['.ts'],
-      include: ['src'],
-      clean: true,
-      all: true,
-    },
+    browser: { provider: 'webdriverio', enabled: true, headless: true, instances: [{ browser: 'chrome' }] },
+    coverage: { reporter: ['default', 'text', 'html'], extension: ['.ts'], include: ['src'], clean: true, all: true },
   },
 });
