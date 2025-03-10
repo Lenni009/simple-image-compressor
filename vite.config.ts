@@ -18,7 +18,12 @@ export default defineConfig({
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   test: {
     exclude: [...configDefaults.exclude, './build/**', './dist/**'],
-    browser: { provider: 'webdriverio', enabled: true, headless: true, instances: [{ browser: 'chrome' }] },
+    browser: {
+      provider: 'webdriverio',
+      enabled: true,
+      headless: true,
+      instances: [{ browser: 'chrome' }, { browser: 'firefox' }],
+    },
     coverage: { reporter: ['default', 'text', 'html'], extension: ['.ts'], include: ['src'], clean: true, all: true },
   },
 });
