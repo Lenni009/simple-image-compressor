@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import { configDefaults } from 'vitest/config';
+import { webdriverio } from '@vitest/browser-webdriverio';
 import dts from 'vite-plugin-dts';
 
 export default defineConfig({
@@ -19,11 +20,11 @@ export default defineConfig({
   test: {
     exclude: [...configDefaults.exclude, './build/**', './dist/**'],
     browser: {
-      provider: 'webdriverio',
+      provider: webdriverio(),
       enabled: true,
       headless: true,
       instances: [{ browser: 'chrome' }, { browser: 'firefox' }],
     },
-    coverage: { reporter: ['default', 'text', 'html'], extension: ['.ts'], include: ['src'], clean: true, all: true },
+    coverage: { reporter: ['default', 'text', 'html'], include: ['src'], clean: true },
   },
 });
