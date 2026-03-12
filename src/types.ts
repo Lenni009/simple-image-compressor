@@ -1,4 +1,4 @@
-import { imageTypes } from './imageTypes';
+import type { imageTypes } from './imageTypes';
 
 type ValueOf<T> = T[keyof T];
 

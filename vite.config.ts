@@ -1,8 +1,8 @@
-import { fileURLToPath } from 'node:url';
-import { defineConfig } from 'vite';
 import { configDefaults } from 'vitest/config';
-import { webdriverio } from '@vitest/browser-webdriverio';
+import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import { fileURLToPath } from 'node:url';
+import { webdriverio } from '@vitest/browser-webdriverio';
 
 export default defineConfig({
   base: './',
@@ -11,7 +11,7 @@ export default defineConfig({
   build: {
     lib: {
       // Could also be a dictionary or array of multiple entry points
-      entry: fileURLToPath(new URL('src/main.ts', import.meta.url)),
+      entry: fileURLToPath(new URL('./src/main.ts', import.meta.url)),
       name: 'imageCompressor',
       formats: ['es', 'umd'],
     },

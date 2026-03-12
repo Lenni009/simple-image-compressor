@@ -9,7 +9,7 @@ onmessage = async ({ data }: MessageEvent<WorkerMessage>) => {
     };
     postMessage(transferObject);
   } catch (error) {
-    const errorMessage = `Could not compress! ${error instanceof Error ? error.message : ''}`;
+    const errorMessage = `Could not compress! ${Error.isError(error) ? error.message : ''}`;
     const transferObject: WorkerErrorResponse = {
       status: 'error',
       data: errorMessage,

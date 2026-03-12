@@ -1,6 +1,6 @@
-import { imageTypes } from './imageTypes';
 import type { CompressionConfig, WorkerMessage, WorkerMessageConfig } from './types';
 import { handleWorkerProcess } from './workerHandler';
+import { imageTypes } from './imageTypes';
 
 export async function compressImage(file: File, config: CompressionConfig = {}): Promise<Blob> {
   // assign default values if no values are given
@@ -23,4 +23,5 @@ export async function compressImage(file: File, config: CompressionConfig = {}):
 }
 
 // export for final bundle
-export { imageTypes, type CompressionConfig };
+export { type CompressionConfig } from './types';
+export { imageTypes } from './imageTypes';

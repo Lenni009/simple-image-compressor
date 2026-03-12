@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
 import { compressImage, imageTypes } from '@/main';
+import { describe, expect, it } from 'vitest';
 
 // due to browser incompatibilities and the @vitest/worker package being too slow, we have to use random images from an API.
 // the browser cannot handle node's fs package to get local image data
@@ -47,8 +47,8 @@ describe('imageCompressor', () => {
   });
 
   it('should recognise bad files', async () => {
-    const buffer = new ArrayBuffer(1000000); // 1MB file
+    const buffer = new ArrayBuffer(1_000_000); // oxlint-disable-line no-magic-numbers 1MB file
     const badFile = new File([buffer], 'badFile.jpg', { type: 'image/jpeg' });
-    await expect(compressImage(badFile)).rejects.toThrowError();
+    await expect(compressImage(badFile)).rejects.toThrow();
   });
 });
