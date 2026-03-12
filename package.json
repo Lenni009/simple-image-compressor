@@ -12,7 +12,10 @@
     "build": "tsc && vite build",
     "format": "prettier --write src/",
     "test": "vitest",
-    "test-ci": "vitest run"
+    "test:ci": "vitest run",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "lint:ci": "oxlint --deny-warnings"
   },
   "repository": {
     "type": "git",
@@ -30,12 +33,13 @@
   },
   "homepage": "https://lenni009.github.io/simple-image-compressor/",
   "devDependencies": {
-    "@vitest/browser": "^4.0.4",
-    "@vitest/browser-webdriverio": "^4.0.4",
-    "prettier": "^3.2.5",
+    "@vitest/browser": "^4.1.0",
+    "@vitest/browser-webdriverio": "^4.1.0",
+    "oxfmt": "^0.40.0",
+    "oxlint": "^1.55.0",
     "typescript": "^5.3.3",
-    "vite": "^7.1.12",
+    "vite": "^8.0.0",
     "vite-plugin-dts": "^4.0.2",
-    "vitest": "^4.0.4"
+    "vitest": "^4.1.0"
   }
 }
