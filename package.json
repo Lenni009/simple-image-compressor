@@ -37,7 +37,7 @@
     "@vitest/browser-webdriverio": "^4.1.0",
     "oxfmt": "^0.50.0",
     "oxlint": "^1.55.0",
-    "typescript": "^5.3.3",
+    "typescript": "^6.0.3",
     "vite": "^8.0.0",
     "vite-plugin-dts": "^5.0.0",
     "vitest": "^4.1.0"
