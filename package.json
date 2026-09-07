@@ -33,7 +33,7 @@
   },
   "homepage": "https://lenni009.github.io/simple-image-compressor/",
   "devDependencies": {
-    "@vitest/browser": "^4.1.0",
+    "@vitest/browser": "^5.0.0",
     "@vitest/browser-webdriverio": "^4.1.0",
     "oxfmt": "^0.65.0",
     "oxlint": "^1.55.0",
